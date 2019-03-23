@@ -12,6 +12,6 @@ BUILDROOT="${DIR}/.."
 
 # Build docker image
 GIT_HEAD="$(git rev-parse --short HEAD)"
-IMAGE="api-base":$GIT_HEAD"
+IMAGE="api-base:$GIT_HEAD"
 
 docker build -t $IMAGE -f Dockerfile-base  $BUILDROOT
