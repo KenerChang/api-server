@@ -24,3 +24,8 @@ func ReadJSON(r *http.Request, target interface{}) error {
 	err := decoder.Decode(target)
 	return err
 }
+
+func WriteWithStatus(w http.ResponseWriter, content string, status int) {
+	w.WriteHeader(status)
+	w.Write([]byte(content))
+}
