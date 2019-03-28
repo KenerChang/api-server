@@ -50,6 +50,11 @@ func setRoutes() http.Handler {
 				}).
 				Methods(entrypoint.Method)
 		}
+
+		// init module
+		if module.InitFunc != nil {
+			module.InitFunc()
+		}
 	}
 	moduleRoutes.Use(middleware.RequestIDMiddleware)
 
