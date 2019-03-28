@@ -10,6 +10,7 @@ import (
 	"github.com/gorilla/mux"
 	"log"
 	"net/http"
+	"os"
 )
 
 var modules = []route.Module{
@@ -19,6 +20,9 @@ var modules = []route.Module{
 func main() {
 	// setup routes
 	r := setRoutes()
+
+	// load config
+	loadConfig()
 
 	// Bind to a port and pass our router in
 	log.Fatal(http.ListenAndServe(":8000", r))
@@ -50,4 +54,13 @@ func setRoutes() http.Handler {
 	moduleRoutes.Use(middleware.RequestIDMiddleware)
 
 	return moduleRoutes
+}
+
+func loadConfig() (err error) {
+	if len(os.Args) > 1 {
+		err = util.LoadConfigFromFile(os.Args[1])
+	} else {
+		err = util.LoadConfigFromEnv()
+	}
+	return
 }
