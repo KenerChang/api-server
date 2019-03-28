@@ -46,7 +46,7 @@ func LoadConfigFromEnv() (err error) {
 	return nil
 }
 
-func Get(name string) string {
+func GetEnv(name string) string {
 	value := envs[name]
 	return value
 }
