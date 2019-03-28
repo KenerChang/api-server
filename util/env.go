@@ -22,7 +22,7 @@ func LoadConfigFromFile(filePath string) (err error) {
 	for scanner.Scan() {
 		line := scanner.Text()
 		line = strings.Replace(line, " ", "", -1)
-		pair := strings.Split(line, "=")
+		pair := strings.SplitN(line, "=", 2)
 
 		if len(pair) == 2 {
 			envs[pair[0]] = pair[1]
