@@ -11,7 +11,9 @@ set -a
 BUILDROOT="${DIR}/.."
 
 # Build docker image
+DATE=`date +%Y%m%d`
 GIT_HEAD="$(git rev-parse --short HEAD)"
-IMAGE="api-base:$GIT_HEAD"
+TAG="$DATE-$GIT_HEAD"
+IMAGE="api-base:$TAG"
 
 docker build -t $IMAGE -f Dockerfile-base  $BUILDROOT

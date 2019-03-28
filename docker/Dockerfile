@@ -2,7 +2,7 @@ FROM api-base:4ff4afb as build-env
 
 WORKDIR /go/src/api-server
 
-COPY . .
+COPY . ./
 
 RUN go install
 
